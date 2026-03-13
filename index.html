@@ -9,15 +9,15 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0a0a0a;
-      --surface: #111111;
-      --surface2: #1a1a1a;
-      --border: #222222;
-      --text: #f0f0f0;
-      --text-muted: #888888;
-      --text-dim: #444444;
-      --accent: #c9a84c;
-      --active: #4ade80;
+      --bg: #f5efe6;
+      --surface: #ffffff;
+      --surface2: #f0e3d4;
+      --border: #e0d2c2;
+      --text: #24130a;
+      --text-muted: #8a6a4f;
+      --text-dim: #b39a84;
+      --accent: #d38b5d;
+      --active: #5bb98a;
       --font-serif: 'DM Serif Display', serif;
       --font-sans: 'Inter', sans-serif;
     }
@@ -53,9 +53,6 @@
     .site-title { font-family: var(--font-serif); font-size: 48px; letter-spacing: -1px; line-height: 1; }
     .site-title span { color: var(--accent); }
     .site-sub { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; }
-    .live-badge { display: flex; align-items: center; gap: 7px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); }
-    .live-dot { width: 7px; height: 7px; background: var(--active); border-radius: 50%; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
     .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--border); }
     .stat { padding: 28px 64px; border-right: 1px solid var(--border); }
     .stat:last-child { border-right: none; }
@@ -148,11 +145,6 @@
   <header>
     <div>
       <h1 class="site-title">Frost<span>Labs</span></h1>
-      <p class="site-sub">Live Portfolio · Powered by Notion</p>
-    </div>
-    <div class="live-badge">
-      <span class="live-dot"></span>
-      Live from Notion
     </div>
   </header>
   <div class="stats-bar">
