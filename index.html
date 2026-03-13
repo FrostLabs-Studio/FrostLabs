@@ -46,15 +46,39 @@
     header {
       padding: 48px 64px 32px;
       border-bottom: 1px solid var(--border);
+      border-radius: 0 0 18px 18px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
+    }
+    .nav {
+      display: flex;
+      gap: 20px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+    .nav a:hover {
+      color: var(--text);
+      border-bottom-color: var(--border);
+    }
+    .nav a.active {
+      color: var(--text);
+      border-bottom-color: var(--accent);
     }
     .site-title { font-family: var(--font-serif); font-size: 48px; letter-spacing: -1px; line-height: 1; }
     .site-title span { color: var(--accent); }
     .site-sub { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; }
-    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--border); }
-    .stat { padding: 28px 64px; border-right: 1px solid var(--border); }
+    .stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin: 16px 64px 0; }
+    .stat { padding: 28px 40px; border-right: 1px solid var(--border); background: rgba(255,255,255,0.5); }
     .stat:last-child { border-right: none; }
     .stat-num { font-family: var(--font-serif); font-size: 42px; line-height: 1; margin-bottom: 4px; }
     .stat-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
@@ -62,38 +86,38 @@
     .section-header { display: flex; justify-content: space-between; align-items: center; padding: 56px 0 32px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
     .section-title { font-family: var(--font-serif); font-size: 28px; }
     .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; }
-    .filter-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 6px 16px; font-size: 12px; font-family: var(--font-sans); cursor: pointer; border-radius: 2px; letter-spacing: 0.05em; transition: all 0.15s; }
+    .filter-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 6px 16px; font-size: 12px; font-family: var(--font-sans); cursor: pointer; border-radius: 999px; letter-spacing: 0.05em; transition: all 0.15s; }
     .filter-btn:hover { border-color: var(--text-muted); color: var(--text); }
     .filter-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
-    .tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border: 1px solid var(--border); color: var(--text-muted); border-radius: 2px; }
+    .tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 10px; border: 1px solid var(--border); color: var(--text-muted); border-radius: 999px; background: rgba(255,255,255,0.6); }
     .tag.status-active { border-color: var(--active); color: var(--active); }
     .tag.status-in-development { border-color: #60a5fa; color: #60a5fa; }
     .tag.status-idea { border-color: var(--accent); color: var(--accent); }
     .tag.status-on-hold { border-color: #f59e0b; color: #f59e0b; }
     .tag.status-completed { border-color: var(--text-muted); color: var(--text-muted); }
-    .ventures-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 80px; }
-    .venture-card { background: var(--bg); padding: 28px; cursor: pointer; transition: background 0.15s; position: relative; }
-    .venture-card:hover { background: var(--surface); }
+    .ventures-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; margin-bottom: 80px; }
+    .venture-card { background: var(--surface); padding: 24px; cursor: pointer; transition: background 0.15s, transform 0.15s, box-shadow 0.15s; position: relative; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+    .venture-card:hover { background: #fffdf9; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,0.05); }
     .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
     .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
     .arrow-icon { color: var(--text-dim); font-size: 16px; transition: color 0.15s, transform 0.15s; flex-shrink: 0; margin-left: 8px; }
     .venture-card:hover .arrow-icon, .post-card:hover .arrow-icon { color: var(--text); transform: translate(2px,-2px); }
     .card-name { font-family: var(--font-serif); font-size: 20px; margin-bottom: 8px; line-height: 1.2; }
     .card-summary { color: var(--text-muted); font-size: 13px; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-    .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1px; background: var(--border); border: 1px solid var(--border); margin-bottom: 80px; }
-    .post-card { background: var(--bg); padding: 32px; cursor: pointer; transition: background 0.15s; position: relative; }
-    .post-card:hover { background: var(--surface); }
+    .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; margin-bottom: 80px; }
+    .post-card { background: var(--surface); padding: 26px; cursor: pointer; transition: background 0.15s, transform 0.15s, box-shadow 0.15s; position: relative; border-radius: 18px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+    .post-card:hover { background: #fffdf9; transform: translateY(-2px); box-shadow: 0 14px 40px rgba(0,0,0,0.05); }
     .post-meta { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
     .post-category { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
     .post-date, .post-read-time { font-size: 12px; color: var(--text-muted); }
     .post-title { font-family: var(--font-serif); font-size: 22px; margin-bottom: 10px; line-height: 1.3; }
     .post-summary { color: var(--text-muted); font-size: 13px; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .post-tags { display: flex; gap: 6px; margin-top: 16px; flex-wrap: wrap; }
-    .empty-state { padding: 64px; text-align: center; color: var(--text-dim); font-size: 13px; background: var(--bg); }
-    .skeleton { background: var(--surface2); border-radius: 2px; animation: shimmer 1.5s infinite; }
+    .empty-state { padding: 64px; text-align: center; color: var(--text-dim); font-size: 13px; background: rgba(255,255,255,0.6); border-radius: 18px; border: 1px dashed var(--border); }
+    .skeleton { background: var(--surface2); border-radius: 999px; animation: shimmer 1.5s infinite; }
     @keyframes shimmer { 0%,100%{opacity:0.5} 50%{opacity:1} }
-    .detail-nav { padding: 24px 64px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; position: sticky; top: 0; background: var(--bg); z-index: 10; }
-    .back-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 8px 18px; font-size: 12px; font-family: var(--font-sans); cursor: pointer; letter-spacing: 0.05em; transition: all 0.15s; border-radius: 2px; }
+    .detail-nav { padding: 24px 64px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; position: sticky; top: 0; background: rgba(245,239,230,0.95); backdrop-filter: blur(10px); z-index: 10; border-radius: 0 0 18px 18px; }
+    .back-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); padding: 8px 18px; font-size: 12px; font-family: var(--font-sans); cursor: pointer; letter-spacing: 0.05em; transition: all 0.15s; border-radius: 999px; }
     .back-btn:hover { border-color: var(--text); color: var(--text); }
     .detail-crumb { font-size: 12px; color: var(--text-dim); }
     .detail-body { max-width: 860px; margin: 0 auto; padding: 64px; }
@@ -107,8 +131,8 @@
     .detail-tags-section { margin-bottom: 40px; }
     .detail-tags-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 12px; }
     .detail-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-    .detail-tag { font-size: 12px; padding: 5px 12px; border: 1px solid var(--border); color: var(--text-muted); border-radius: 2px; }
-    .detail-link-btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); color: var(--text-muted); padding: 10px 20px; font-size: 13px; font-family: var(--font-sans); cursor: pointer; transition: all 0.15s; text-decoration: none; border-radius: 2px; }
+    .detail-tag { font-size: 12px; padding: 5px 12px; border: 1px solid var(--border); color: var(--text-muted); border-radius: 999px; background: rgba(255,255,255,0.6); }
+    .detail-link-btn { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--border); color: var(--text-muted); padding: 10px 20px; font-size: 13px; font-family: var(--font-sans); cursor: pointer; transition: all 0.15s; text-decoration: none; border-radius: 999px; background: var(--surface); }
     .detail-link-btn:hover { border-color: var(--text); color: var(--text); }
     .post-content { line-height: 1.9; color: var(--text-muted); }
     .post-content h1 { font-family: var(--font-serif); font-size: 32px; color: var(--text); margin: 48px 0 16px; line-height: 1.2; }
@@ -146,6 +170,13 @@
     <div>
       <h1 class="site-title">Frost<span>Labs</span></h1>
     </div>
+    <nav class="nav">
+      <a href="/" class="active">Home</a>
+      <a href="/ventures.html">Ventures</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
   </header>
   <div class="stats-bar">
     <div class="stat"><div class="stat-num" id="stat-ventures">—</div><div class="stat-label">Ventures</div></div>

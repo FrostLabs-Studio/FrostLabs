@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog · FrostLabs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5efe6;
+      --surface: #ffffff;
+      --surface2: #f0e3d4;
+      --border: #e0d2c2;
+      --text: #24130a;
+      --text-muted: #8a6a4f;
+      --text-dim: #b39a84;
+      --accent: #d38b5d;
+      --active: #5bb98a;
+      --font-serif: 'DM Serif Display', serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    header {
+      padding: 48px 64px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .site-title { font-family: var(--font-serif); font-size: 40px; letter-spacing: -1px; line-height: 1; }
+    .site-title span { color: var(--accent); }
+    .nav {
+      display: flex;
+      gap: 20px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+    .nav a:hover {
+      color: var(--text);
+      border-bottom-color: var(--border);
+    }
+    .nav a.active {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+    main { max-width: 860px; margin: 0 auto; padding: 0 64px 72px; }
+    .page-intro { padding: 40px 0 32px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+    .page-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-dim); margin-bottom: 10px; }
+    .page-title { font-family: var(--font-serif); font-size: 36px; margin-bottom: 8px; }
+    .page-sub { font-size: 14px; color: var(--text-muted); max-width: 520px; }
+    .posts-list { margin-top: 32px; display: flex; flex-direction: column; gap: 32px; }
+    .post-card {
+      background: var(--surface);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      padding: 20px 22px;
+    }
+    .post-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; font-size: 12px; color: var(--text-muted); }
+    .post-category { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+    .post-title-link { text-decoration: none; color: inherit; }
+    .post-title {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+    .post-summary { font-size: 14px; color: var(--text-muted); margin-bottom: 10px; }
+    .post-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.6);
+    }
+    .read-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .read-link span { font-size: 14px; }
+    .empty-state {
+      padding: 40px 0;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .detail-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.12);
+      display: none;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 16px;
+      z-index: 40;
+    }
+    .detail-overlay.visible { display: flex; }
+    .detail-panel {
+      background: var(--surface);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      max-width: 860px;
+      width: 100%;
+      max-height: 100%;
+      overflow: auto;
+      padding: 32px 32px 40px;
+    }
+    .detail-crumb { font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+    .detail-title { font-family: var(--font-serif); font-size: 30px; margin-bottom: 8px; }
+    .detail-meta-row { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--text-muted); margin-bottom: 18px; }
+    .detail-summary { font-size: 15px; color: var(--text-muted); margin-bottom: 18px; }
+    .detail-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
+    .detail-tags .tag { background: transparent; }
+    .post-content { line-height: 1.9; color: var(--text-muted); font-size: 15px; }
+    .content-loading { display: flex; align-items: center; gap: 10px; color: var(--text-dim); font-size: 13px; padding: 24px 0; }
+    .loading-spinner { width: 14px; height: 14px; border-radius: 999px; border: 2px solid var(--border); border-top-color: var(--text-muted); animation: spin 0.8s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .overlay-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-dim);
+    }
+    .overlay-close:hover { color: var(--text); }
+    @media (max-width: 900px) {
+      header { padding: 32px 24px; flex-direction: column; gap: 16px; align-items: flex-start; }
+      main { padding: 0 24px 56px; }
+      .detail-panel { padding: 24px 20px 32px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1 class="site-title">Frost<span>Labs</span></h1>
+    </div>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/ventures.html">Ventures</a>
+      <a href="/blog.html" class="active">Blog</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section class="page-intro">
+      <div class="page-eyebrow">Writing</div>
+      <h2 class="page-title">Notes from building FrostLabs.</h2>
+      <p class="page-sub">Essays, build logs, and thinking in public about products, companies, and the studio behind them.</p>
+    </section>
+    <section>
+      <div id="posts-list" class="posts-list">
+        <div class="empty-state">Loading posts...</div>
+      </div>
+    </section>
+  </main>
+  <div id="detail-overlay" class="detail-overlay" aria-modal="true" role="dialog">
+    <div class="detail-panel">
+      <button class="overlay-close" aria-label="Close" onclick="closeOverlay()">&times;</button>
+      <div class="detail-crumb" id="detail-crumb"></div>
+      <h1 class="detail-title" id="detail-title"></h1>
+      <div class="detail-meta-row" id="detail-meta"></div>
+      <p class="detail-summary" id="detail-summary"></p>
+      <div class="detail-tags" id="detail-tags"></div>
+      <hr style="border:none;border-top:1px solid var(--border);margin:18px 0 24px">
+      <div id="post-content-area" class="post-content"></div>
+    </div>
+  </div>
+  <script>
+    var allPosts = [];
+    function fmtDate(d) {
+      if (!d) return '';
+      return new Date(d).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
+    }
+    function esc(s) {
+      return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function renderPosts(posts) {
+      var list = document.getElementById('posts-list');
+      if (!posts.length) {
+        list.innerHTML = '<div class="empty-state">No published posts yet.</div>';
+        return;
+      }
+      list.innerHTML = posts.map(function(p, i) {
+        return (
+          '<article class="post-card">' +
+            '<div class="post-meta">' +
+              (p.category ? '<span class="post-category">' + esc(p.category) + '</span>' : '') +
+              (p.publishedDate ? '<span>' + fmtDate(p.publishedDate) + '</span>' : '') +
+              (p.readTime ? '<span>' + esc(String(p.readTime)) + ' min read</span>' : '') +
+            '</div>' +
+            '<a href="javascript:void(0)" class="post-title-link" onclick="openPost(' + i + ')">' +
+              '<h3 class="post-title">' + esc(p.title) + '</h3>' +
+            '</a>' +
+            (p.summary ? '<p class="post-summary">' + esc(p.summary) + '</p>' : '') +
+            (p.tags && p.tags.length
+              ? '<div class="post-tags">' + p.tags.map(function(t){return '<span class="tag">' + esc(t) + '</span>';}).join('') + '</div>'
+              : ''
+            ) +
+            '<a class="read-link" href="javascript:void(0)" onclick="openPost(' + i + ')">Read post <span>&#8599;</span></a>' +
+          '</article>'
+        );
+      }).join('');
+    }
+    function openPost(i) {
+      var p = allPosts[i]; if (!p) return;
+      var overlay = document.getElementById('detail-overlay');
+      document.getElementById('detail-crumb').textContent = p.category ? 'Writing · ' + p.category : 'Writing';
+      document.getElementById('detail-title').textContent = p.title || '';
+      document.getElementById('detail-meta').innerHTML =
+        (p.publishedDate ? '<span>' + fmtDate(p.publishedDate) + '</span>' : '') +
+        (p.readTime ? '<span>· ' + esc(String(p.readTime)) + ' min read</span>' : '');
+      document.getElementById('detail-summary').textContent = p.summary || '';
+      document.getElementById('detail-tags').innerHTML =
+        (p.tags && p.tags.length
+          ? p.tags.map(function(t){return '<span class="tag">' + esc(t) + '</span>';}).join('')
+          : ''
+        );
+      document.getElementById('post-content-area').innerHTML =
+        '<div class="content-loading"><div class="loading-spinner"></div><span>Loading content...</span></div>';
+      overlay.classList.add('visible');
+      fetch('/api/post-content?id=' + encodeURIComponent(p.id))
+        .then(function(r){return r.json();})
+        .then(function(data){
+          var area = document.getElementById('post-content-area');
+          if (area) area.innerHTML = data.html || '<p style="color:var(--text-dim)">No content yet.</p>';
+        })
+        .catch(function(){
+          var area = document.getElementById('post-content-area');
+          if (area) area.innerHTML = '<p style="color:var(--text-dim)">Could not load content.</p>';
+        });
+    }
+    function closeOverlay() {
+      document.getElementById('detail-overlay').classList.remove('visible');
+    }
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') closeOverlay();
+    });
+    fetch('/api/posts').then(function(r){return r.json();}).then(function(data){
+      if (!Array.isArray(data)) data = [];
+      allPosts = data;
+      renderPosts(allPosts);
+    }).catch(function(){
+      var list = document.getElementById('posts-list');
+      list.innerHTML = '<div class="empty-state">Could not load posts right now.</div>';
+    });
+  </script>
+</body>
+</html>
+
