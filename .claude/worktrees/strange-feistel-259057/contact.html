@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact · FrostLabs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f5efe6;
+      --surface: #ffffff;
+      --surface2: #f0e3d4;
+      --border: #e0d2c2;
+      --text: #24130a;
+      --text-muted: #8a6a4f;
+      --text-dim: #b39a84;
+      --accent: #d38b5d;
+      --active: #5bb98a;
+      --font-serif: 'DM Serif Display', serif;
+      --font-sans: 'Inter', sans-serif;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 14px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    header {
+      padding: 48px 64px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .site-title { font-family: var(--font-serif); font-size: 40px; letter-spacing: -1px; line-height: 1; }
+    .site-title span { color: var(--accent); }
+    .nav {
+      display: flex;
+      gap: 20px;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 1px solid transparent;
+    }
+    .nav a:hover {
+      color: var(--text);
+      border-bottom-color: var(--border);
+    }
+    .nav a.active {
+      color: var(--text);
+      border-bottom-color: var(--accent);
+    }
+    main { max-width: 860px; margin: 0 auto; padding: 0 64px 72px; }
+    .page-intro { padding: 40px 0 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+    .page-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-dim); margin-bottom: 10px; }
+    .page-title { font-family: var(--font-serif); font-size: 36px; margin-bottom: 8px; }
+    .page-sub { font-size: 14px; color: var(--text-muted); max-width: 520px; }
+    .content { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 40px; margin-top: 28px; align-items: flex-start; }
+    .contact-copy { font-size: 15px; color: var(--text-muted); }
+    .contact-copy p { margin-bottom: 16px; }
+    .contact-copy ul { margin: 8px 0 18px 20px; }
+    .contact-copy li { margin-bottom: 6px; }
+    .contact-card {
+      padding: 20px 22px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 14px;
+    }
+    .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .contact-item { margin-bottom: 12px; }
+    .contact-item-title { font-weight: 500; margin-bottom: 2px; }
+    .contact-link {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .contact-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+    form {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    label { font-size: 13px; font-weight: 500; }
+    input, textarea {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      padding: 9px 10px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      background: #fffdf9;
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    button[type="submit"] {
+      align-self: flex-start;
+      margin-top: 4px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #fffdf9;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      filter: brightness(0.95);
+    }
+    .form-note {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 4px;
+    }
+    @media (max-width: 900px) {
+      header { padding: 32px 24px; flex-direction: column; gap: 16px; align-items: flex-start; }
+      main { padding: 0 24px 56px; }
+      .content { grid-template-columns: minmax(0, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1 class="site-title">Frost<span>Labs</span></h1>
+    </div>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/ventures.html">Ventures</a>
+      <a href="/blog.html">Blog</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html" class="active">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section class="page-intro">
+      <div class="page-eyebrow">Contact</div>
+      <h2 class="page-title">Interested in working together?</h2>
+      <p class="page-sub">If a venture, idea, or piece of writing here resonates with you, I’d love to hear from you.</p>
+    </section>
+    <section class="content">
+      <div class="contact-copy">
+        <p>Whether you’re exploring a potential collaboration, want to jam on an idea, or just want to say hi, the easiest way to reach me is by email.</p>
+        <p><strong>Send a note to max@frostlabs.studio</strong> with a bit of context on who you are and what you’d like to talk about.</p>
+      </div>
+      <aside class="contact-card">
+        <div class="label">Email</div>
+        <div class="contact-item">
+          <div class="contact-item-title">Direct line</div>
+          <strong>max@frostlabs.studio</strong>
+        </div>
+      </aside>
+    </section>
+  </main>
+</body>
+</html>
