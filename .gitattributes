@@ -1,0 +1,15 @@
+# Force LF line endings for all text files. Prevents OneDrive / Windows from
+# poisoning the working tree with CRLF noise when the repo lives in OneDrive.
+* text=auto eol=lf
+
+# Binary types — never normalize
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.svg  binary
+*.ico  binary
+*.woff  binary
+*.woff2 binary
+*.pdf binary
